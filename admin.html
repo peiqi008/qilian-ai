@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启联科技 - 后台管理</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #33B5FF;
+            --primary-dark: #0099E6;
+            --light: #f5f9ff;
+            --gray: #86909C;
+            --dark: #1D2129;
+            --success: #00B42A;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .status {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        .main {
+            padding: 40px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .refresh-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--light);
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 500;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--gray);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #e6f7ff;
+            color: var(--primary);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .phone {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .count {
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            th, td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+    // 权限校验
+    async function checkAuth() {
+        const res = await fetch('/api/checkLogin');
+        const data = await res.json();
+        if (!data.success) {
+            location.href = '/login.html';
+        }
+    }
+    checkAuth();
+</script>
+    <!-- 提示音（隐藏） -->
+    <audio id="noticeAudio" preload="auto">
+        <source src="notification.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>启联科技 - 客户表单管理后台</h1>
+                <div class="status">实时监控中</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">客户提交列表 <span id="totalCount" class="count">(0)</span></div>
+                    <button class="refresh-btn" id="refreshBtn">立即刷新</button>
+                </div>
+                <div class="table-container">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>提交时间</th>
+                                <th>所属行业</th>
+                                <th>联系电话</th>
+                                <th>客户称呼</th>
+                                <th>需求描述</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr class="empty">
+                                <td colspan="5">暂无客户提交数据</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tableBody = document.getElementById('tableBody');
+        const totalCount = document.getElementById('totalCount');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const noticeAudio = document.getElementById('noticeAudio');
+        
+        let lastDataLength = 0;
+
+        // 获取表单数据
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/admin/data');
+                const result = await res.json();
+                
+                if (result.success) {
+                    renderTable(result.data);
+                    
+                    // 新数据提醒
+                    if (result.data.length > lastDataLength && lastDataLength > 0) {
+                        playNoticeSound();
+                    }
+                    lastDataLength = result.data.length;
+                }
+            } catch (err) {
+                console.error('获取数据失败', err);
+            }
+        }
+
+        // 渲染表格
+        function renderTable(data) {
+            totalCount.textContent = `(${data.length})`;
+            
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr class="empty"><td colspan="5">暂无客户提交数据</td></tr>`;
+                return;
+            }
+
+            // 倒序：最新的在最上面
+            data.sort((a, b) => b.id - a.id);
+
+            let html = '';
+            data.forEach(item => {
+                const time = new Date(item.submitTime).toLocaleString('zh-CN');
+                const name = item.name || '未填写';
+                const demand = item.demand || '未填写';
+                
+                html += `
+                <tr>
+                    <td>${time}</td>
+                    <td><span class="badge">${item.industry}</span></td>
+                    <td class="phone">${item.phone}</td>
+                    <td>${name}</td>
+                    <td style="max-width:400px;white-space:normal;">${demand}</td>
+                </tr>
+                `;
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        // 播放提示音
+        function playNoticeSound() {
+            noticeAudio.play().catch(() => {});
+        }
+
+        // 事件
+        refreshBtn.addEventListener('click', fetchData);
+        
+        // 初始化 + 自动刷新（10秒一次）
+        fetchData();
+        setInterval(fetchData, 10000);
+    </script>
+</body>
+</html>

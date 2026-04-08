@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启联科技 - AI电话机器人 | 智能电销解决方案</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="启联科技" id="logo-img">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">首页</a></li>
+                <li><a href="#features" class="nav-link">产品优势</a></li>
+                <li><a href="#scenarios" class="nav-link">应用场景</a></li>
+                <li><a href="#cases" class="nav-link">成功案例</a></li>
+                <li><a href="#contact" class="nav-link">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页/表单区（首屏第一行） -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title animate-fade-in">AI智能电话机器人<br><span class="highlight">让电销效率提升10倍</span></h1>
+                    <p class="hero-subtitle animate-fade-in-delay">启联科技AI电话机器人，7×24小时不间断外呼，精准筛选高意向客户，降低人力成本，提升转化效率</p>
+                    <div class="contact-info animate-fade-in-delay-2">
+                        <p>📞 咨询电话：<a href="tel:18666744353">18666744353</a></p>
+                        <p>💬 微信咨询：<span class="wx-number">zz06140206</span> <button class="copy-btn" data-copy="zz06140206">复制</button></p>
+                    </div>
+                </div>
+                <div class="hero-form animate-slide-in-right">
+    <!-- 新标题：城市 + 限时免费使用 -->
+    <h2 class="form-title">
+        <span id="cityTag" class="city-tag">定位中</span>
+        <span>限时免费试用</span>
+    </h2>
+    
+    <p>填写信息，获取专属AI电销解决方案</p>
+    <form id="contact-form">
+        <!-- 表单内容保持不变，直接沿用原来的 -->
+        <div class="form-group">
+            <label for="industry">您的行业 <span class="required">*</span></label>
+            <select id="industry" name="industry" required>
+                <option value="">请选择行业</option>
+                <option value="房地产">房地产</option>
+                <option value="金融理财">金融理财</option>
+                <option value="教育培训">教育培训</option>
+                <option value="电商零售">电商零售</option>
+                <option value="企业服务">企业服务</option>
+                <option value="医疗健康">医疗健康</option>
+                <option value="其他">其他</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="phone">联系电话 <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="请输入您的手机号" required>
+        </div>
+        <div class="form-group">
+            <label for="name">称呼（选填）</label>
+            <input type="text" id="name" name="name" placeholder="请输入您的称呼">
+        </div>
+        <div class="form-group">
+            <label for="demand">需求描述（选填）</label>
+            <textarea id="demand" name="demand" placeholder="请描述您的电销需求，我们将为您定制方案"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">立即提交，免费体验</button>
+    </form>
+</div>
+            </div>
+        </div>
+        <div class="hero-illustration">
+            <img src="https://via.placeholder.com/800x400/33B5FF/FFFFFF?text=AI+机器人+电销+插画" alt="AI电话机器人插画" class="animate-float">
+        </div>
+    </section>
+
+    <!-- 产品优势 -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">AI电话机器人核心优势</h2>
+            <p class="section-subtitle animate-fade-in-delay">用AI技术重构电销流程，降本增效一步到位</p>
+            <div class="features-grid">
+                <div class="feature-card animate-slide-up">
+                    <div class="feature-icon">🤖</div>
+                    <h3>7×24小时不间断外呼</h3>
+                    <p>AI机器人全年无休，每天可外呼1000+通电话，效率是人工的10倍以上</p>
+                </div>
+                <div class="feature-card animate-slide-up-delay-1">
+                    <div class="feature-icon">🎯</div>
+                    <h3>精准客户筛选</h3>
+                    <p>智能语义识别，自动标记高意向客户，人工只跟进优质线索</p>
+                </div>
+                <div class="feature-card animate-slide-up-delay-2">
+                    <div class="feature-icon">💰</div>
+                    <h3>大幅降低人力成本</h3>
+                    <p>1台机器人=5名电销员，人力成本降低80%，投入产出比提升300%</p>
+                </div>
+                <div class="feature-card animate-slide-up">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>全流程通话录音</h3>
+                    <p>每通电话自动录音，支持话术分析、客户画像，优化销售策略</p>
+                </div>
+                <div class="feature-card animate-slide-up-delay-1">
+                    <div class="feature-icon">🧠</div>
+                    <h3>智能话术学习</h3>
+                    <p>基于大模型训练，支持多轮对话，应对客户各种问题，话术专业统一</p>
+                </div>
+                <div class="feature-card animate-slide-up-delay-2">
+                    <div class="feature-icon">📊</div>
+                    <h3>数据可视化报表</h3>
+                    <p>实时查看外呼数据、接通率、意向率，多维度分析电销效果</p>
+                </div>
+            </div>
+        </div>
+        <div class="features-illustration">
+            <img src="https://via.placeholder.com/600x300/33B5FF/FFFFFF?text=AI+数据分析+机器人+插画" alt="AI数据分析插画" class="animate-float-reverse">
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="scenarios" id="scenarios">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">多行业适用场景</h2>
+            <p class="section-subtitle animate-fade-in-delay">覆盖全行业电销需求，定制化解决方案</p>
+            <div class="scenarios-grid">
+                <div class="scenario-card animate-zoom-in">
+                   
+                    <h3>房地产行业</h3>
+                    <p>楼盘推广、客户回访、活动邀约，精准筛选购房意向客户</p>
+                </div>
+                <div class="scenario-card animate-zoom-in-delay-1">
+
+                    <h3>金融行业</h3>
+                    <p>贷款产品推广、理财咨询、信用卡办理，合规话术自动外呼</p>
+                </div>
+                <div class="scenario-card animate-zoom-in-delay-2">
+           
+                    <h3>教育培训</h3>
+                    <p>课程推广、学员邀约、续课提醒，提升到店率和转化率</p>
+                </div>
+                <div class="scenario-card animate-zoom-in">
+
+                    <h3>电商零售</h3>
+                    <p>售后回访、活动通知、复购提醒，提升客户复购率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">客户成功案例</h2>
+            <p class="section-subtitle animate-fade-in-delay">用真实数据见证AI电销的力量</p>
+            <div class="cases-grid">
+                <div class="case-card animate-slide-left">
+                    <div class="case-data">
+                        <h3>某房地产公司</h3>
+                        <div class="data-item">
+                            <span class="data-number">10倍</span>
+                            <span class="data-label">外呼效率提升</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-number">75%</span>
+                            <span class="data-label">人力成本降低</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-number">300%</span>
+                            <span class="data-label">客户转化率提升</span>
+                        </div>
+                    </div>
+                    <p>使用AI机器人后，每天外呼量从500通提升到5000通，高意向客户筛选效率大幅提升，销售团队专注跟进优质线索，业绩增长显著</p>
+                </div>
+                <div class="case-card animate-slide-right">
+                    <div class="case-data">
+                        <h3>某教育培训机构</h3>
+                        <div class="data-item">
+                            <span class="data-number">80%</span>
+                            <span class="data-label">到店率提升</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-number">60%</span>
+                            <span class="data-label">人力成本降低</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-number">200%</span>
+                            <span class="data-label">课程销量提升</span>
+                        </div>
+                    </div>
+                    <p>AI机器人自动完成学员邀约、课程介绍，人工只负责到店转化，招生效率翻倍，校区运营成本大幅下降</p>
+                </div>
+            </div>
+        </div>
+        <div class="cases-illustration">
+            <img src="https://via.placeholder.com/700x350/33B5FF/FFFFFF?text=AI+机器人+成功案例+插画" alt="AI成功案例插画" class="animate-float">
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title animate-fade-in">联系启联科技</h2>
+            <p class="section-subtitle animate-fade-in-delay">立即咨询，获取专属AI电销解决方案</p>
+            <div class="contact-info-large">
+                <div class="contact-item animate-fade-in-delay-1">
+                    <div class="contact-icon">📞</div>
+                    <h3>咨询电话</h3>
+                    <p><a href="tel:18666744353">18666744353</a></p>
+                </div>
+                <div class="contact-item animate-fade-in-delay-2">
+                    <div class="contact-icon">💬</div>
+                    <h3>微信咨询</h3>
+                    <p>zz06140206</p>
+                </div>
+                <div class="contact-item animate-fade-in-delay-3">
+                    <div class="contact-icon">🕒</div>
+                    <h3>服务时间</h3>
+                    <p>周一至周日 9:00-21:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo2.png" alt="启联科技">
+                    <p>启智创新 · 联接未来</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">产品优势</a></li>
+                        <li><a href="#scenarios">应用场景</a></li>
+                        <li><a href="#cases">成功案例</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>联系方式</h4>
+                    <p>📞 电话：18666744353</p>
+                    <p>💬 微信：zz06140206</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 启联科技. 保留所有权利. AI电话机器人智能电销解决方案</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="back-to-top">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
